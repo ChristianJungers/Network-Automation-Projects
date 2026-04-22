@@ -1,0 +1,20 @@
+# Ignore Ansible retry files (created when a playbook fails)
+*.retry
+
+# Ignore sensitive variable files (if you aren't using Vault yet)
+vars.yml
+secrets/
+*.key
+*.pem
+
+# Ignore OS-specific junk
+.DS_Store
+Thumbs.db
+
+# Ignore Python virtual environments (if you use them for Ansible)
+venv/
+.venv/
+__pycache__/
+
+# Ignore local VS Code settings that shouldn't be shared
+.vscode/

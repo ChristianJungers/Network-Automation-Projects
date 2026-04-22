@@ -1,0 +1,20 @@
+---
+- name: Verify CML Connectivity
+  hosts: localhost
+  gather_facts: false
+  vars_files:
+    - vars.yml
+
+  tasks:
+    - name: Get CML Lab Facts
+      cisco.cml.cml_lab_facts:
+        host: "{{ cml_host }}"
+        user: "{{ cml_username }}"
+        password: "{{ cml_password }}"
+        lab: "{{ cml_lab_name }}"
+        validate_certs: false
+      register: cml_facts
+
+    - name: Display Connection Success
+      ansible.builtin.debug:
+        var: cml_facts
