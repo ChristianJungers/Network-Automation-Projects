@@ -1,3 +1,5 @@
+<img width="1499" height="901" alt="{08D79093-401D-41A8-B67B-3F7F98892AC6}" src="https://github.com/user-attachments/assets/5cb0d7c6-52c4-4106-8807-5514396af2af" />
+
 # CML Network Automation Project 1
 
 This project demonstrates a professional CI/CD approach to network infrastructure using Ansible and Cisco Modeling Labs (CML).
