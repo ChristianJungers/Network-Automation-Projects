@@ -10,6 +10,9 @@ nodes:
     x: 0
     y: 0
     interfaces:
+      - id: i0
+        label: GigabitEthernet0/0
+        type: physical
       - id: i1
         label: GigabitEthernet0/1
         type: physical
@@ -19,8 +22,14 @@ nodes:
     x: 100
     y: 0
     interfaces:
+      - id: i0
+        label: GigabitEthernet0/0
+        type: physical
       - id: i1
         label: GigabitEthernet0/1
+        type: physical
+      - id: i2
+        label: GigabitEthernet0/2
         type: physical
   - id: n2
     label: R3
@@ -28,6 +37,9 @@ nodes:
     x: 200
     y: 0
     interfaces:
+      - id: i0
+        label: GigabitEthernet0/0
+        type: physical
       - id: i1
         label: GigabitEthernet0/1
         type: physical
@@ -58,7 +70,40 @@ nodes:
       - id: i0
         label: GigabitEthernet0/0
         type: physical
+      - id: i2
+        label: GigabitEthernet0/2
+        type: physical
+  - id: n5
+    label: EXT-CONN
+    node_definition: external_connector
+    x: 100
+    y: -200
+    configuration: bridge
+    interfaces:
+      - id: i0
+        label: port
+        type: physical
+  - id: n6
+    label: MGMT-SW
+    node_definition: unmanaged_switch
+    x: 100
+    y: -100
+    interfaces:
+      - id: i0
+        label: port0
+        type: physical
+      - id: i1
+        label: port1
+        type: physical
+      - id: i2
+        label: port2
+        type: physical
+      - id: i3
+        label: port3
+        type: physical
+
 links:
+  # Internal Lab Links
   - id: l0
     n1: n0
     i1: i1
@@ -70,12 +115,39 @@ links:
     n2: n3
     i2: i2
   - id: l2
+    n1: n1
+    i1: i2
+    n2: n4
+    i2: i1  
+  - id: l3
     n1: n2
     i1: i1
     n2: n4
-    i2: i1
-  - id: l3
+    i2: i2
+  - id: l4
     n1: n3
     i1: i0
     n2: n4
     i2: i0
+  # Management Connections
+  - id: l5
+    n1: n0
+    i1: i0
+    n2: n6
+    i2: i0
+  - id: l6
+    n1: n1
+    i1: i0
+    n2: n6
+    i2: i1
+  - id: l7
+    n1: n2
+    i1: i0
+    n2: n6
+    i2: i2
+  # Bridge to Physical Network
+  - id: l8
+    n1: n6
+    i1: i3
+    n2: n5
+    i2: i0 # CML specific ID for External Connector

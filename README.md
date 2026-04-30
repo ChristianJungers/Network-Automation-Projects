@@ -12,11 +12,15 @@ This project demonstrates a professional CI/CD approach to network infrastructur
 
 ## Phase 1: Infrastructure as Code (IaC)
 - **Declarative Deployment:** Pivoted from manual node creation to a declarative "Blueprint" approach using a `topology.yaml` file.
+- **OOB Management Architecture:** Designed and implemented an **Out-of-Band (OOB) Management Network**.
+  - Integrated an **External Connector (Bridge)** to link the virtual lab to the physical development environment.
+  - Deployed an **Unmanaged Management Switch** to act as a central hub, overcoming CML's single-link limitation on the External Connector.
 - **Schema Validation:** Troubleshot and resolved CML API validation errors regarding mandatory fields (versioning, interface types, and node-to-interface mapping).
-- **Topology:** Deployed a 5-node topology consisting of:
+- **Topology:** Deployed a 7 -node topology consisting of:
   - 3x Cisco IOSv Routers
   - 2x Cisco IOSvL2 Switches
-- **Idempotency:** The deployment playbook ensures the lab exists and is in the correct state without duplicating resources on subsequent runs.
+  - 1x Unmanaged Management Switch
+  - 1x External Connector
 
 ## Current Project State
 The virtual hardware is fully deployed and wired according to the blueprint. The environment is ready for Phase 2: Configuration Management.
