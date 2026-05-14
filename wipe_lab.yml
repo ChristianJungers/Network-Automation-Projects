@@ -1,20 +1,23 @@
 ---
-- name: Deploy CML Infastrucutre
+- name: Wipe CML Infastrucutre
   hosts: localhost
   gather_facts: false
   vars:
     ansible_python_interpreter: "{{ ansible_playbook_python }}"
-  vars_files:
-    - vars.yml
+
+  vars_prompt:
+    - name: "cml_lab_name_wipe"
+      prompt: "Enter CML Lab Name to Wipe"
+      private: false
+      confirm: true
 
   tasks:
-    - name: Deploy topology from file
+    - name: Wipe topology from file
       cisco.cml.cml_lab:
         host: "{{ cml_host }}"
         user: "{{ cml_username }}"
         password: "{{ cml_password }}"
-        lab: "{{ cml_lab_name }}"
-        state: started
+        lab: "{{ cml_lab_name_wipe }}"
+        state: wiped
         wait: true
-        file: "topology.yml"
         validate_certs: false

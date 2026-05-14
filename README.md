@@ -1,4 +1,4 @@
-<img width="1499" height="901" alt="{08D79093-401D-41A8-B67B-3F7F98892AC6}" src="https://github.com/user-attachments/assets/5cb0d7c6-52c4-4106-8807-5514396af2af" />
+![Topology]({57D42F6E-2C3E-4BF7-BD7D-7AE236CE1C83}.png)
 
 # CML Network Automation Project 1
 
@@ -24,3 +24,16 @@ This project demonstrates a professional CI/CD approach to network infrastructur
 
 ## Current Project State
 The virtual hardware and management plane are fully deployed and verified. The environment is now reachable via the OOB management network, ready for Phase 2: Configuration Management.
+![Successful Ping]({17C96B26-C3EA-47AB-BF03-287B154DFE98}.png)
+
+## Issue Tracker
+- Ran into issue with external connector not wanting to come online and getting the following error. (**Fixed** had external connector set as null bridge when it needed to be System Bridge.)
+![External Connector Selection Error]({0E7E9829-2B6E-496B-A6CB-A4DF6F60A1CC}.png)
+- Ran into SSH error with ansible doing a test ping. (**Fixed** was caused by an incorrect indention in my inventory.yml file.)
+![SSH Error Ansible]({0254B73B-99E3-439C-800D-3BFFBBF3244C}.png) 
+
+## Ansible Commands
+- `ansible routers:switches -m ping --ask-vault-pass -vvv` Ping select children in inventory file. -m module name, --ask-vault-pass allow command to reach var.yml file encypted with ansible vault. -vvv verbose output.
+- `ansible-playbook "playbook name"` Run ansible playbook.
+- `ansible-playbook --flush-cache` Clear the socket.
+- 

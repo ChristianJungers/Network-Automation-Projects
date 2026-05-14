@@ -58,6 +58,9 @@ nodes:
       - id: i0
         label: GigabitEthernet0/0
         type: physical
+      - id: i3
+        label: GigabitEthernet0/3
+        type: physical
   - id: n4
     label: SW2
     node_definition: iosvl2
@@ -73,12 +76,15 @@ nodes:
       - id: i2
         label: GigabitEthernet0/2
         type: physical
+      - id: i3
+        label: GigabitEthernet0/3
+        type: physical
   - id: n5
     label: EXT-CONN
     node_definition: external_connector
     x: 100
     y: -200
-    configuration: bridge
+    configuration: System Bridge
     interfaces:
       - id: i0
         label: port
@@ -101,53 +107,77 @@ nodes:
       - id: i3
         label: port3
         type: physical
+      - id: i4
+        label: port4
+        type: physical
+      - id: i5
+        label: port5
+        type: physical
 
 links:
-  # Internal Lab Links
+  # R1 to SW1
   - id: l0
     n1: n0
     i1: i1
     n2: n3
     i2: i1
+  # R2 to SW1  
   - id: l1
     n1: n1
     i1: i1
     n2: n3
     i2: i2
+  # R2 to SW2
   - id: l2
     n1: n1
     i1: i2
     n2: n4
-    i2: i1  
+    i2: i1
+  # R3 to SW2 
   - id: l3
     n1: n2
     i1: i1
     n2: n4
     i2: i2
+  # SW1 to SW2 
   - id: l4
     n1: n3
     i1: i0
     n2: n4
     i2: i0
-  # Management Connections
+  # R1 to MGMT-SW
   - id: l5
     n1: n0
     i1: i0
     n2: n6
     i2: i0
+  # R2 to MGMT-SW
   - id: l6
     n1: n1
     i1: i0
     n2: n6
     i2: i1
+  #R3 to MGMT-SW
   - id: l7
     n1: n2
     i1: i0
     n2: n6
     i2: i2
-  # Bridge to Physical Network
+  # EXT-CONN to MGMT-SW
   - id: l8
     n1: n6
     i1: i3
     n2: n5
-    i2: i0 # CML specific ID for External Connector
+    i2: i0 
+  # SW1 to MGMT-SW
+  - id: l9
+    n1: n3
+    i1: i3
+    n2: n6
+    i2: i4
+  # SW2 to MGMT-SW
+  - id: l10
+    n1: n4
+    i1: i3
+    n2: n6
+    i2: i5
